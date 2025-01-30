@@ -4,16 +4,16 @@ FROM node:18
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy only package.json and package-lock.json first to avoid caching issues
-COPY ./package.json ./package-lock.json ./
+# Copy package.json and package-lock.json from backend directory
+COPY backend/package.json backend/package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy all project files
-COPY . .
+# Copy the entire backend folder
+COPY backend/ .
 
-# Expose the port your app runs on (update if needed)
+# Expose the port (if your backend runs on 5000)
 EXPOSE 3000
 
 # Command to start the server
