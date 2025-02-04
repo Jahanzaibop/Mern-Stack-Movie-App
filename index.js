@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cookieParser())
 app.use(cors({
-    origin: 'http://localhost:3000', // Change this to your front-end URL
+    origin: 'https://movies-app-frontend-chi.vercel.app/', // Change this to your front-end URL
     credentials: true // Allow credentials (cookies)
 }));
 app.use(express.json());
