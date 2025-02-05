@@ -14,6 +14,9 @@ app.use(cookieParser())
 app.use(cors({
     origin: 'https://movies-app-frontend-chi.vercel.app', // Change this to your front-end URL
     credentials: true // Allow credentials (cookies)
+    ,
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow DELETE method
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow Authorization header
 }));
 app.use(express.json());
 
