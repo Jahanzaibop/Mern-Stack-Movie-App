@@ -8,7 +8,7 @@ const router = express.Router();
 router.route('/').post(authenticate , authorizeAdmin , createGenre);
 router.route('/all').get(allGenre);
 router.route('/:id').put(authenticate , authorizeAdmin , updateGenre)
-router.route('/:id').delete(authenticate , authorizeAdmin , deleteGenre)
+router.route('/:id').delete( authorizeAdmin , deleteGenre)
 
 
 export default router;
