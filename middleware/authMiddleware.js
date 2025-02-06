@@ -6,39 +6,29 @@ import asyncHandler from './asyncHandler.js';
 const jwtsecret = 'wejowejaklnsgkladasdasd';
 
 
-const authenticate = asyncHandler(async (req,res,next) =>{
-
-    let token;
-
-    token = req.cookies.jwt;
-
-    // check if the user has the token
+const authenticate = asyncHandler(async (req, res, next) => {
+    let token = req.cookies.jwt;
     
-    if(token){
+    console.log("Token received:", token); // Debugging line
 
-        try{
-       
+    if (token) {
+        try {
             const decoded = jwt.verify(token, jwtsecret);
-            
             req.user = await User.findById(decoded.userId).select('-password');
-           
-           
-           
-            next()
 
-        }
-        catch(error){
-            res.status(401)
+            console.log("Decoded User:", req.user); // Debugging line
+           
+            next();
+        } catch (error) {
+            res.status(401);
             throw new Error('Not Authorized, token failed');
         }
-
-    } 
-
-    else{
-    res.status(401)
-    throw new Error('Not Authorized , no token' );
+    } else {
+        res.status(401);
+        throw new Error('Not Authorized, no token');
     }
-})
+});
+
 
 // check if the user is admin or not 
 
